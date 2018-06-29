@@ -4,7 +4,7 @@ var errorElm = document.getElementById('error');
 var commandsElm = document.getElementById('commands');
 
 // Start the worker in which sql.js will run
-var worker = new Worker("worker.sql.js");
+var worker = new Worker("Js/worker.sql.js");
 worker.onerror = error;
 
 // Open a database
