@@ -14,6 +14,12 @@ MeritData(
   "Board" TEXT,
   "SubBoard" TEXT
 )
+
+UserData(
+	UserId Integer PRIMARY KEY,
+	UserName TEXT,
+	Rank TEXT
+)
 ```
 
 For more information and discussion: https://bitcointalk.org/index.php?topic=4551881.0
