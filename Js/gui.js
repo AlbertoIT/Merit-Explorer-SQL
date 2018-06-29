@@ -12,7 +12,7 @@ worker.postMessage({action:'open'});
 
 function LoadLocalDB(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'btctalk.db', true);
+	xhr.open('GET', 'Data/btctalk.db', true);
 	xhr.responseType = 'arraybuffer';
 	console.log("rading DB!");
 	xhr.onload = function(e) {
