@@ -4,7 +4,7 @@ A tool made with Javascript and SQLite to run queries over the merit data on the
 
 **Tables:**
 
-MeritData(
+`MeritData(
   "Date" Integer,
   "Merit" Integer,
   "Msg" TEXT,
@@ -12,6 +12,6 @@ MeritData(
   "ToID" Integer,
   "Board" TEXT,
   "SubBoard" TEXT
-)
+)`
 
 For more information and discussion: https://bitcointalk.org/index.php?topic=4551881.0
