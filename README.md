@@ -16,9 +16,9 @@ MeritData(
 )
 
 UserData(
-	UserId Integer PRIMARY KEY,
-	UserName TEXT,
-	Rank TEXT
+   UserId Integer PRIMARY KEY,
+   UserName TEXT,
+   Rank TEXT
 )
 ```
 
