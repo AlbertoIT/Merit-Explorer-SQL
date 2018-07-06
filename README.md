@@ -6,19 +6,22 @@ A tool made with Javascript and SQLite to run queries over the merit data on the
 
 ```
 MeritData(
-  "Date" Integer,
+  "Date" TEXT,
   "Merit" Integer,
   "Msg" TEXT,
   "FromID" Integer,
   "ToID" Integer,
   "Board" TEXT,
-  "SubBoard" TEXT
+  "SubBoard" TEXT,
+  "TitleThread" TEXT
 )
 
 UserData(
    UserId Integer PRIMARY KEY,
    UserName TEXT,
-   Rank TEXT
+   Rank TEXT,
+   Trust TEXT,
+   Location TEXT
 )
 ```
 
