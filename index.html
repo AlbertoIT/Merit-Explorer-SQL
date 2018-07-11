@@ -2,24 +2,91 @@
 <!doctype html>
 <html>
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121990884-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-121990884-2');
+	</script>	
   <meta charset="utf8">
   <title>SQL for Merits</title>
   <link rel="stylesheet" href="Style/codemirror.css">
   <link rel="stylesheet" href="Style/demo.css">
+  <link rel="stylesheet" href="Style/show-hint.css">
+	
   <script src="Js/codemirror.js"></script>
+  <script src="Js/sql-codemirror.js"></script>
+  <script src="Js/javascript.js"></script>
+  <script src="Js/show-hint.js"></script>
+  <script src="Js/javascript-hint.js"></script>
+  <script src="Js/markdown.js"></script>  
+
+  <script src="Js/scriptengine.js"></script>  
+
+
 
 </head>
 <body>
 	<h1>SQL system for Full Merit History</h1>
 	<h2>Made by Piggy</h2>
-	<h3>You can learn more about how to build your SQL queries in <a href="https://www.w3schools.com/sql/">here</a></h3>
+	<h3>You can learn more about how to build your SQL queries in <a href="https://www.w3schools.com/sql/">here</a> and about Javascript in <a href="https://www.w3schools.com/jS/default.asp">here</a>.</h3>
 <main>
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'SQL')">SQL</button>
+  <button class="tablinks" onclick="openTab(event, 'Script')">Script</button>
+</div>
+
+<div id="SQL" class="tabcontent">
     <label for='commands'>Enter some SQL</label>
     <br>
 
-    <textarea id="commands"></textarea>
+    <textarea id="sqlarea"></textarea>
+    <button id="executeSql" class="button">Execute SQL</button>
+</div>
 
-<button id="execute" class="button">Execute</button>
+<div id="Script" class="tabcontent">
+    <label for='script'>Enter some script code</label>
+    <br>
+
+    <textarea id="scriptarea">
+// Variable holding the sum of unspent merits for each user.
+var total_unspent_merits=0;
+
+// List of username and total merit received for every user.
+var merit_received = RunSQLSynch('SELECT username,  coalesce(tot,0) From userdata Left join (select toid, sum(merit)  as tot from meritdata group by toid)   on userid = toid;');
+
+// List of username and total merit given for every user.
+var merit_given = RunSQLSynch('SELECT username,  coalesce(tot,0) From userdata Left join (select fromid, sum(merit)  as tot from meritdata group by fromid)   on userid = fromid;');
+
+// We go through the lists (they have the same lenght and already ordered in the same way).
+for (var i=0;i<Length(merit_received);i++){	
+  		
+  		// Just to be safe we check if the Username match, by getting the first coulmn of the current row.
+		if (GetDataField(merit_received,i,0) == GetDataField(merit_given,i,0)){
+          
+          // Calculate the unspent merits (using the forumula (Total Merit Receive/2) - Total Merit Given)
+          var user_unspent_merits = (GetDataField(merit_received,i,1)/2) - GetDataField(merit_given,i,1);
+         
+		  // If it’s positive add it to the total.
+          if (user_unspent_merits > 0)
+          	total_unspent_merits += user_unspent_merits;         
+        }    
+}
+
+// Clear the output information and write the result.
+Clear();
+WriteLine("\nTOTAL MERIT UNSPENT:" + total_unspent_merits + "\n");
+</textarea>
+    <button id="executeScript" class="button">Execute Script</button>
+</div>
+
+	
+
 
 <div id="error" class="error"></div>
 
