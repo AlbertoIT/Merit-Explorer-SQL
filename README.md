@@ -2,7 +2,7 @@
 
 A tool made with Javascript and SQLite to run queries over the merit data on the forum Bitcointalk.
 
-**Live version**
+**Live version:**
 https://albertoit.github.io/Merit-Explorer-SQL/
 
 **Tables:**
